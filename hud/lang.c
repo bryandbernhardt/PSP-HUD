@@ -61,6 +61,7 @@ void getEnglishLang(LANG *lang)
 		sprintf(lang->PERCENT, "PERCENT");
 		sprintf(lang->TIME_LEFT, "TIME LEFT");
 		sprintf(lang->PERCENT_AND_TIME_LEFT, "PERCENT AND TIME LEFT");
+		sprintf(lang->PRECENT_WITHOUT_ICON, "PERCENT WITHOUT ICON");
 		sprintf(lang->TIME_ICON_24H, "ICON/24H");
 		sprintf(lang->TIME_ICON_12H_SUFFIX, "ICON/12H/SUFFIX");
 		sprintf(lang->TIME_ICON_12H_NOSUFFIX, "ICON/12H");
@@ -134,6 +135,7 @@ void readLang(SceUID fd, LANG *lang)
 		readLine(fd, lang->PERCENT, MAX_LANG_TEXT);
 		readLine(fd, lang->TIME_LEFT, MAX_LANG_TEXT);
 		readLine(fd, lang->PERCENT_AND_TIME_LEFT, MAX_LANG_TEXT);
+		readLine(fd, lang->PRECENT_WITHOUT_ICON, MAX_LANG_TEXT);
 		readLine(fd, lang->TIME_ICON_24H, MAX_LANG_TEXT);
 		readLine(fd, lang->TIME_ICON_12H_SUFFIX, MAX_LANG_TEXT);
 		readLine(fd, lang->TIME_ICON_12H_NOSUFFIX, MAX_LANG_TEXT);

@@ -373,7 +373,7 @@ void menuNavigation()
 					if(pad.Buttons & PSP_CTRL_LEFT) cfg.showBattery--;
 					if(pad.Buttons & PSP_CTRL_RIGHT) cfg.showBattery++;
 					if(cfg.showBattery < 0) cfg.showBattery = 3;
-					if(cfg.showBattery > 3) cfg.showBattery = 0;
+					if(cfg.showBattery > 4) cfg.showBattery = 0;
 					break;
 				case 6:
 					if(pad.Buttons & PSP_CTRL_LEFT) cfg.showTime--;
@@ -562,7 +562,7 @@ void drawMenu(CANVAS *canvas)
 		checkMenuMinimumSize();
 
 		y += 10;
-		sprintf(text, "%s %s:    %s", lang.SHOW, lang.BATTERY, (cfg.showBattery == 0 ? lang.OFF : cfg.showBattery == 1 ? lang.PERCENT : cfg.showBattery == 2 ? lang.TIME_LEFT : lang.PERCENT_AND_TIME_LEFT));
+		sprintf(text, "%s %s:    %s", lang.SHOW, lang.BATTERY, (cfg.showBattery == 0 ? lang.OFF : cfg.showBattery == 1 ? lang.PERCENT : cfg.showBattery == 2 ? lang.TIME_LEFT : cfg.showBattery == 4 ? lang.PRECENT_WITHOUT_ICON : lang.PERCENT_AND_TIME_LEFT));
 		if(selection == 5) fillRectangle(canvas, sel_x, y-2, sel_w, 11, SELECTION_FILL, SELECTION_BORDER);
 		drawSmallFont(canvas, text, x - strlen(lang.SHOW)*6 - strlen(lang.BATTERY)*6 - 6, y);
 		drawAlignment(canvas, x+10, y-2, 16, 11, cfg.alignment[2]);
@@ -888,7 +888,7 @@ void getInfoCPU()
 }
 void getInfoBattery()
 {
-	// 0 - off, 1 - percent, 2 - time, 3 - percent/time
+	// 0 - off, 1 - percent, 2 - time, 3 - percent/time, 4 - percent without icon
 
 	if(cfg.showBattery > 0) {
 		char *info = getInfoForAlignment(cfg.alignment[2], 2);
@@ -904,6 +904,8 @@ void getInfoBattery()
 				} else {
 					sprintf(text, "\x1A%01i:%02i ", battery_time/60, battery_time%60);
 				}
+			} else if(cfg.showBattery == 4) {
+				sprintf(text, "%i%% ", battery_percent);
 			} else {
 				if(battery_time == 0) {
 					sprintf(text, "\x1A%i%% -:-- ", battery_percent);

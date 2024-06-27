@@ -16,6 +16,6 @@ LIBS =
 #LIBS = -lpspusb -lpspusbstor
 #LIBS = -lpspsysmem_user 
 
-PSPSDK=$(shell psp-config --pspsdk-path)
+PSPSDK=C:\pspsdk\psp\sdk
 include $(PSPSDK)/lib/build_prx.mak
 
